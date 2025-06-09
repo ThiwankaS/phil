@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:55:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/09 06:28:21 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 00:53:15 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_philo
 	int			right_fork;
 	size_t		last_meal;
 	int			meals_eaten;
-	int			done;
 	t_thread	thread;
 	t_mutex		meal_lock;
 	t_rules		*rules;

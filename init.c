@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/09 05:17:56 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 00:53:37 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,12 @@ t_philo *ft_set_philos(t_rules *rules, int size)
 		philos[i].right_fork = (i + 1) % rules->nb_philo;
 		philos[i].last_meal = rules->start_time;
 		philos[i].meals_eaten = 0;
-		philos[i].done = 0;
 		if (pthread_mutex_init(&philos[i].meal_lock, NULL) != 0)
 		{
 			j = 0;
 			while (j < i)
 			{
 				pthread_mutex_destroy(&philos[j].meal_lock);
-				j++;
-			}
-			free(philos);
-			return (NULL);
-		}
-		if (pthread_mutex_init(&philos[i].death_lock, NULL) != 0)
-		{
-			j = 0;
-			while (j < i)
-			{
-				pthread_mutex_destroy(&philos[j].death_lock);
 				j++;
 			}
 			free(philos);

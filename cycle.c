@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/09 06:25:23 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 00:53:53 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,8 @@ void *philo_routine(void *arg)
 	while (!get_stop(rules))
 	{
 		ft_eat(ph);
-		if (rules->must_eat != -1 && ph->meals_eaten >= rules->must_eat && !ph->done)
+		if (rules->must_eat != -1 && ph->meals_eaten >= rules->must_eat)
 		{
-			ph->done = 1;
 			increment_done(rules);
 		}
 		ft_sleep(ph);
