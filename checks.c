@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/08 16:17:31 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/09 05:54:18 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,22 @@ void increment_done(t_rules *rules)
 void *monitor_routine(void *arg)
 {
 	t_rules *rules = (t_rules *)arg;
-		while (!get_stop(rules)) {
-		for (int i = 0; i < rules->nb_philo; i++) {
+	while (!get_stop(rules))
+	{
+		for (int i = 0; i < rules->nb_philo; i++)
+		{
 			pthread_mutex_lock(&rules->philos[i].meal_lock);
-			if (!rules->philos[i].done) {
+			if (!rules->philos[i].done)
+			{
 				size_t since_meal = getcurrenttime() - rules->philos[i].last_meal;
-				if (since_meal > rules->time_die) {
+				if (since_meal > rules->time_die)
+				{
 					print_status(&rules->philos[i], "died");
 					set_stop(rules);
 				}
 			}
 			pthread_mutex_unlock(&rules->philos[i].meal_lock);
 		}
-		ft_usleep(1000);
 	}
 	return NULL;
 }
