@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 00:53:37 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 01:00:54 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,5 @@ int init_rules(t_rules *rules, int argc, char **argv)
 	pthread_mutex_init(&rules->print_lock, NULL);
 	pthread_mutex_init(&rules->stop_lock, NULL);
 	pthread_mutex_init(&rules->done_lock, NULL);
-	for (int i = 0; i < rules->nb_philo; i++) {
-	}
 	return 0;
 }

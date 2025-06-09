@@ -14,9 +14,11 @@ SRCS = \
 	atol.c\
 	checks.c\
 	cycle.c\
+	error.c\
 	exit.c\
 	init.c\
 	utils.c\
+	validate.c\
 	main.c\
 
 OBJS = $(SRCS:.c=.o)

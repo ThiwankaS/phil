@@ -6,11 +6,26 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:08:52 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/08 16:14:36 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 01:21:56 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Calculates the length of a null-terminated string
+ * Returns the number of characters before the null terminator
+ * Safely handles a NULL pointer by returning 0
+*/
+size_t	ft_strlen(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	return (i);
+}
 
 size_t getcurrenttime(void)
 {

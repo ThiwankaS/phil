@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:55:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 00:53:15 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 01:34:41 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <pthread.h>
 # include <stdint.h>
 # include <limits.h>
+
+# define ERROR "Usage: ./philo n_philo time_die time_eat time_sleep [meals]"
 
 typedef pthread_t		t_thread;
 typedef pthread_mutex_t	t_mutex;
@@ -40,7 +42,7 @@ typedef struct s_philo
 
 struct s_rules
 {
-	int nb_philo;
+	int		nb_philo;
 	size_t	time_die;
 	size_t	time_eat;
 	size_t	time_sleep;
@@ -56,6 +58,7 @@ struct s_rules
 };
 
 size_t	getcurrenttime(void);
+size_t	ft_strlen(char *str);
 int		ft_usleep(size_t m_sec);
 void	ft_print(t_philo *philo, const char *msg);
 void	print_status(t_philo *philo, const char *msg);
@@ -70,5 +73,9 @@ void	increment_done(t_rules *rules);
 void	*monitor_routine(void *arg);
 
 void	*philo_routine(void *arg);
+
+int		ft_is_valid(char **argv, int argc);
+
+int		ft_error(char *text);
 
 #endif
