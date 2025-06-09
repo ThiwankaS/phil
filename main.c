@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:32 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 01:32:43 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 02:29:12 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int main(int argc, char **argv)
 		{
 			if (init_rules(&rules, argc, argv))
 				return (1);
+			pthread_create(&monitor, NULL, monitor_routine, &rules);
 			while (i < rules.nb_philo)
 			{
 				pthread_create(&rules.philos[i].thread, NULL, philo_routine, &rules.philos[i]);
 				i++;
 			}
-			pthread_create(&monitor, NULL, monitor_routine, &rules);
 			i = 0;
 			while (i < rules.nb_philo)
 			{
