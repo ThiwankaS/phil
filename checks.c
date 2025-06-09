@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/09 05:54:18 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 00:45:46 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,14 @@ void increment_done(t_rules *rules)
 
 void *monitor_routine(void *arg)
 {
-	t_rules *rules = (t_rules *)arg;
+	t_rules *rules;
+	int i;
+
+	rules = (t_rules *)arg;
 	while (!get_stop(rules))
 	{
-		for (int i = 0; i < rules->nb_philo; i++)
+		i = 0;
+		while(i < rules->nb_philo)
 		{
 			pthread_mutex_lock(&rules->philos[i].meal_lock);
 			if (!rules->philos[i].done)
@@ -55,6 +59,7 @@ void *monitor_routine(void *arg)
 				}
 			}
 			pthread_mutex_unlock(&rules->philos[i].meal_lock);
+			i++;
 		}
 	}
 	return NULL;
