@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 04:38:01 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 07:12:24 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,6 @@ t_philo *ft_set_philos(t_rules *rules, int size)
 			while (j < i)
 			{
 				pthread_mutex_destroy(&philos[j].meal_lock);
-				j++;
-			}
-			free(philos);
-			return (NULL);
-		}
-		if (pthread_mutex_init(&philos[i].death_lock, NULL) != 0)
-		{
-			j = 0;
-			while (j < i)
-			{
-				pthread_mutex_destroy(&philos[j].death_lock);
 				j++;
 			}
 			free(philos);

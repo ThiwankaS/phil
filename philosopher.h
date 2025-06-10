@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:55:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 04:34:45 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 07:13:04 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_philo
 	int			meals_eaten;
 	t_thread	thread;
 	t_mutex		meal_lock;
-	t_mutex		death_lock;
 	t_rules		*rules;
 }	t_philo;
 
