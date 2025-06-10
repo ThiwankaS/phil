@@ -6,13 +6,13 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 05:08:22 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:16:02 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void *mono_philo(t_philo *ph)
+void	*mono_philo(t_philo *ph)
 {
 	int		first;
 	t_rules	*rules;
@@ -28,13 +28,13 @@ void *mono_philo(t_philo *ph)
 	return (NULL);
 }
 
-void ft_think(t_philo *philo)
+void	ft_think(t_philo *philo)
 {
-	size_t time;
-	size_t die;
-	size_t sleep;
-	size_t eat;
-	t_rules *rules;
+	size_t	time;
+	size_t	die;
+	size_t	sleep;
+	size_t	eat;
+	t_rules	*rules;
 
 	rules = philo->rules;
 	die = rules->time_die;
@@ -50,7 +50,7 @@ void ft_think(t_philo *philo)
 		ft_usleep(time);
 }
 
-void ft_sleep(t_philo *philo)
+void	ft_sleep(t_philo *philo)
 {
 	t_rules	*rules;
 
@@ -61,56 +61,49 @@ void ft_sleep(t_philo *philo)
 	ft_usleep(philo->rules->time_sleep);
 }
 
-void ft_eat(t_philo *ph)
+void	ft_eat(t_philo *philo)
 {
-	int	first;
-	int	second;
-	t_rules *rules;
+	int		first;
+	int		second;
+	t_rules	*rules;
+	size_t	time;
 
-	rules = ph->rules;
-	if (ph->left_fork < ph->right_fork)
-	{
-		first = ph->left_fork;
-		second = ph->right_fork;
-	}
-	else
-	{
-		first = ph->right_fork;
-		second = ph->left_fork;
-	}
+	rules = philo->rules;
+	pick_forks(philo, &first, &second);
 	pthread_mutex_lock(&rules->forks[first]);
-	print_status(ph, "has taken a fork");
+	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&rules->forks[second]);
-	print_status(ph, "has taken a fork");
-	print_status(ph, "is eating");
+	print_status(philo, "has taken a fork");
+	time = getcurrenttime();
+	pthread_mutex_lock(&philo->meal_lock);
+	philo->last_meal = time;
+	philo->meals_eaten++;
+	pthread_mutex_unlock(&philo->meal_lock);
+	print_status(philo, "is eating");
 	ft_usleep(rules->time_eat);
-	pthread_mutex_lock(&ph->meal_lock);
-	ph->last_meal = getcurrenttime();
-	ph->meals_eaten++;
-	pthread_mutex_unlock(&ph->meal_lock);
 	pthread_mutex_unlock(&rules->forks[second]);
 	pthread_mutex_unlock(&rules->forks[first]);
 }
 
-void *philo_routine(void *arg)
+void	*routine(void *arg)
 {
-	t_philo	*ph;
+	t_philo	*philo;
 	t_rules	*rules;
 
-	ph = (t_philo *)arg;
-	rules = ph->rules;
+	philo = (t_philo *)arg;
+	rules = philo->rules;
 	if (rules->nb_philo == 1)
-		return (mono_philo(ph));
-	if (ph->id % 2)
+		return (mono_philo(philo));
+	if (philo->id % 2)
 	{
-		print_status(ph, "is thinking");
+		print_status(philo, "is thinking");
 		ft_usleep(rules->time_eat);
 	}
 	while (!get_stop(rules) && !get_full(rules))
 	{
-		ft_eat(ph);
-		ft_sleep(ph);
-		ft_think(ph);
+		ft_eat(philo);
+		ft_sleep(philo);
+		ft_think(philo);
 	}
 	return (NULL);
 }

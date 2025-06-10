@@ -1,33 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   meals.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/10 10:09:36 by tsomacha          #+#    #+#             */
+/*   Updated: 2025/06/10 10:12:00 by tsomacha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosopher.h"
 
-int get_full(t_rules *rules)
+int	get_full(t_rules *rules)
 {
-	int full;
+	int	full;
+
 	pthread_mutex_lock(&rules->done_lock);
 	full = rules->full;
 	pthread_mutex_unlock(&rules->done_lock);
-	return full;
+	return (full);
 }
 
-void set_full(t_rules *rules)
+void	set_full(t_rules *rules)
 {
 	pthread_mutex_lock(&rules->done_lock);
 	rules->full = 1;
 	pthread_mutex_unlock(&rules->done_lock);
 }
 
-void *routine(void *arg)
+void	*dinning(void *arg)
 {
-	t_rules *rules;
-	int	completed;
-	int i;
+	t_rules	*rules;
+	int		completed;
+	int		i;
 
 	rules = (t_rules *)arg;
 	while (!get_stop(rules) && !get_full(rules))
 	{
 		i = 0;
 		completed = 0;
-		while(i < rules->nb_philo)
+		while (i < rules->nb_philo)
 		{
 			pthread_mutex_lock(&rules->philos[i].meal_lock);
 			if (rules->philos[i].meals_eaten == rules->must_eat)
@@ -38,5 +51,5 @@ void *routine(void *arg)
 		if (rules->must_eat != -1 && completed == rules->nb_philo)
 			set_full(rules);
 	}
-	return NULL;
+	return (NULL);
 }
