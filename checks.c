@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 05:28:46 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 07:25:06 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void increment_done(t_rules *rules)
 	pthread_mutex_unlock(&rules->done_lock);
 }
 
-void *monitor_routine(void *arg)
+void *life(void *arg)
 {
 	t_rules *rules;
 	size_t since_meal;

@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 07:12:24 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 08:21:32 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int init_rules(t_rules *rules, int argc, char **argv)
 	rules->forks = ft_set_froks(rules->nb_philo);
 	rules->philos = ft_set_philos(rules, rules->nb_philo);
 	if (!rules->forks || !rules->philos)
-		return 1;
+		return (1);
 	pthread_mutex_init(&rules->print_lock, NULL);
 	pthread_mutex_init(&rules->stop_lock, NULL);
 	pthread_mutex_init(&rules->done_lock, NULL);

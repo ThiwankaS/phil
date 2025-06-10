@@ -16,7 +16,7 @@ void set_full(t_rules *rules)
 	pthread_mutex_unlock(&rules->done_lock);
 }
 
-void *routine(void *arg)
+void *dinning(void *arg)
 {
 	t_rules *rules;
 	int	completed;

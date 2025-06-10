@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 05:08:22 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 07:43:51 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void ft_eat(t_philo *ph)
 	pthread_mutex_unlock(&rules->forks[first]);
 }
 
-void *philo_routine(void *arg)
+void *routine(void *arg)
 {
 	t_philo	*ph;
 	t_rules	*rules;

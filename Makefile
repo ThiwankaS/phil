@@ -16,6 +16,7 @@ SRCS = \
 	cycle.c\
 	error.c\
 	exit.c\
+	helper.c\
 	init.c\
 	utils.c\
 	validate.c\
