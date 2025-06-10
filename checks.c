@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 04:46:17 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 05:28:46 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void *monitor_routine(void *arg)
 			since_meal = getcurrenttime() - rules->philos[i].last_meal;
 			if (since_meal > rules->time_die)
 			{
-				print_status(&rules->philos[i], "died");
+				if (!get_full(rules))
+					print_status(&rules->philos[i], "died");
 				set_stop(rules);
 			}
 			pthread_mutex_unlock(&rules->philos[i].meal_lock);
