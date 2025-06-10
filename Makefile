@@ -19,6 +19,7 @@ SRCS = \
 	init.c\
 	utils.c\
 	validate.c\
+	meals.c\
 	main.c\
 
 OBJS = $(SRCS:.c=.o)

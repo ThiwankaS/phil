@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 02:19:49 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 05:08:22 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void ft_think(t_philo *philo)
 	eat = rules->time_eat;
 	sleep = rules->time_sleep;
 	time = die - sleep - eat;
-	if(get_stop(rules))
+	if (get_stop(rules))
+		return ;
+	if (get_full(rules))
 		return ;
 	print_status(philo, "is thinking");
 	if (time > 0)
@@ -53,7 +55,7 @@ void ft_sleep(t_philo *philo)
 	t_rules	*rules;
 
 	rules = philo->rules;
-	if(get_stop(rules))
+	if (get_stop(rules))
 		return ;
 	print_status(philo, "is sleeping");
 	ft_usleep(philo->rules->time_sleep);
@@ -104,13 +106,9 @@ void *philo_routine(void *arg)
 		print_status(ph, "is thinking");
 		ft_usleep(rules->time_eat);
 	}
-	while (!get_stop(rules))
+	while (!get_stop(rules) && !get_full(rules))
 	{
 		ft_eat(ph);
-		if (rules->must_eat != -1 && ph->meals_eaten > rules->must_eat)
-		{
-			increment_done(rules);
-		}
 		ft_sleep(ph);
 		ft_think(ph);
 	}
