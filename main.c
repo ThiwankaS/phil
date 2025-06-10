@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:32 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 01:32:43 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 04:14:53 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int main(int argc, char **argv)
 {
 	t_thread	monitor;
+	t_thread	meal;
 	t_rules		rules;
 	int	i;
 
@@ -25,12 +26,13 @@ int main(int argc, char **argv)
 		{
 			if (init_rules(&rules, argc, argv))
 				return (1);
+			pthread_create(&monitor, NULL, monitor_routine, &rules);
 			while (i < rules.nb_philo)
 			{
 				pthread_create(&rules.philos[i].thread, NULL, philo_routine, &rules.philos[i]);
 				i++;
 			}
-			pthread_create(&monitor, NULL, monitor_routine, &rules);
+			pthread_create(&meal, NULL, routine, &rules);
 			i = 0;
 			while (i < rules.nb_philo)
 			{
@@ -38,6 +40,7 @@ int main(int argc, char **argv)
 				i++;
 			}
 			pthread_join(monitor, NULL);
+			pthread_join(meal, NULL);
 		}
 		else
 			return (ft_error("Invalid arguments!"));

@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:55:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 01:34:41 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 04:34:45 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philo
 	int			meals_eaten;
 	t_thread	thread;
 	t_mutex		meal_lock;
+	t_mutex		death_lock;
 	t_rules		*rules;
 }	t_philo;
 
@@ -48,6 +49,7 @@ struct s_rules
 	size_t	time_sleep;
 	int		must_eat;
 	int		stop;
+	int		full;
 	int		done_count;
 	t_mutex	*forks;
 	t_mutex	print_lock;
@@ -77,5 +79,9 @@ void	*philo_routine(void *arg);
 int		ft_is_valid(char **argv, int argc);
 
 int		ft_error(char *text);
+
+int get_full(t_rules *rules);
+void set_full(t_rules *rules);
+void *routine(void *arg);
 
 #endif

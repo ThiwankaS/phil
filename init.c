@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 01:00:54 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 04:38:01 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,17 @@ t_philo *ft_set_philos(t_rules *rules, int size)
 			free(philos);
 			return (NULL);
 		}
+		if (pthread_mutex_init(&philos[i].death_lock, NULL) != 0)
+		{
+			j = 0;
+			while (j < i)
+			{
+				pthread_mutex_destroy(&philos[j].death_lock);
+				j++;
+			}
+			free(philos);
+			return (NULL);
+		}
 		philos[i].rules = rules;
 		i++;
 	}
@@ -82,6 +93,7 @@ int init_rules(t_rules *rules, int argc, char **argv)
 	rules->time_sleep = ft_atol(argv[4]);
 	rules->must_eat = argc == 6 ? ft_atol(argv[5]) : -1;
 	rules->stop = 0;
+	rules->full = 0;
 	rules->done_count = 0;
 	rules->start_time = getcurrenttime();
 	rules->forks = ft_set_froks(rules->nb_philo);
