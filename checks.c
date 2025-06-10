@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 11:27:21 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:04:12 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	*life(void *arg)
 			}
 			i++;
 		}
-		ft_usleep(5);
+		usleep(100);
 	}
 	return (NULL);
 }

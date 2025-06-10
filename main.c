@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:32 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:50:41 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:44:51 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 			if (init_life(&rules, &monitor))
 				return (exit_clr(&rules, "life thread creating fails!"));
 			if (init_phio_routines(&rules, &monitor))
-				return (exit_clr(&rules, "philo routine thread creating fails!"));
+				return (exit_clr(&rules, "routine thread creating fails!"));
 			if (init_dinning(&rules, &meal, &monitor))
 				return (exit_clr(&rules, "dinning thread creating fails!"));
 			join_all(&rules, &meal, &monitor);
