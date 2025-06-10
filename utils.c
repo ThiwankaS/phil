@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:08:52 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 01:21:56 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 10:10:36 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-size_t getcurrenttime(void)
+size_t	getcurrenttime(void)
 {
 	t_timeval	time;
 	size_t		m_sec;
@@ -38,7 +38,7 @@ size_t getcurrenttime(void)
 	return (m_sec);
 }
 
-int ft_usleep(size_t m_sec)
+int	ft_usleep(size_t m_sec)
 {
 	size_t	time;
 
@@ -58,7 +58,7 @@ void	ft_print(t_philo *philo, const char *msg)
 	printf("%ld %d %s\n", time, id, msg);
 }
 
-void print_status(t_philo *philo, const char *msg)
+void	print_status(t_philo *philo, const char *msg)
 {
 	pthread_mutex_lock(&philo->rules->print_lock);
 	if (!get_stop(philo->rules))

@@ -6,11 +6,26 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 07:23:16 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 08:18:23 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 10:22:42 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+int	pick_forks(t_philo *philo, int *first, int *second)
+{
+	if (philo->left_fork < philo->right_fork)
+	{
+		*first = philo->left_fork;
+		*second = philo->right_fork;
+	}
+	else
+	{
+		*first = philo->right_fork;
+		*second = philo->left_fork;
+	}
+	return (0);
+}
 
 int	init_life(t_rules *rules, t_thread *monitor)
 {

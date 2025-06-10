@@ -6,13 +6,32 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 09:47:26 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 10:13:10 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-t_mutex *ft_set_froks(int size)
+static int	init_meal_locks(t_philo *philos, int *index)
+{
+	int	i;
+	int	j;
+
+	i = *index;
+	if (pthread_mutex_init(&philos[i].meal_lock, NULL) != 0)
+	{
+		j = 0;
+		while (j < i)
+		{
+			pthread_mutex_destroy(&philos[j].meal_lock);
+			j++;
+		}
+		return (1);
+	}
+	return (0);
+}
+
+t_mutex	*ft_set_froks(int size)
 {
 	int		i;
 	int		j;
@@ -22,9 +41,9 @@ t_mutex *ft_set_froks(int size)
 	forks = malloc(sizeof(t_mutex) * size);
 	if (!forks)
 		return (NULL);
-	while(i < size)
+	while (i < size)
 	{
-		if(pthread_mutex_init(&forks[i], NULL) != 0)
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
 		{
 			j = 0;
 			while (j < i)
@@ -40,10 +59,9 @@ t_mutex *ft_set_froks(int size)
 	return (forks);
 }
 
-t_philo *ft_set_philos(t_rules *rules, int size)
+t_philo	*ft_set_philos(t_rules *rules, int size)
 {
 	int		i;
-	int		j;
 	t_philo	*philos;
 
 	i = 0;
@@ -57,14 +75,8 @@ t_philo *ft_set_philos(t_rules *rules, int size)
 		philos[i].right_fork = (i + 1) % rules->nb_philo;
 		philos[i].last_meal = rules->start_time;
 		philos[i].meals_eaten = 0;
-		if (pthread_mutex_init(&philos[i].meal_lock, NULL) != 0)
+		if (init_meal_locks(philos, &i))
 		{
-			j = 0;
-			while (j < i)
-			{
-				pthread_mutex_destroy(&philos[j].meal_lock);
-				j++;
-			}
 			free(philos);
 			return (NULL);
 		}
@@ -74,7 +86,7 @@ t_philo *ft_set_philos(t_rules *rules, int size)
 	return (philos);
 }
 
-int init_rules(t_rules *rules, int argc, char **argv)
+int	init_rules(t_rules *rules, int argc, char **argv)
 {
 	rules->nb_philo = ft_atol(argv[1]);
 	rules->time_die = ft_atol(argv[2]);
