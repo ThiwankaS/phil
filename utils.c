@@ -6,11 +6,21 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:08:52 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:10:36 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:01:43 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Function declaration
+*/
+size_t	ft_strlen(char *str);
+size_t	getcurrenttime(void);
+int		ft_usleep(size_t m_sec);
+void	ft_print(t_philo *philo, const char *msg);
+void	print_status(t_philo *philo, const char *msg);
+
 
 /**
  * Calculates the length of a null-terminated string

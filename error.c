@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 01:13:53 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:35:06 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:54:54 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  * Function declaration
 */
 int	ft_error(char *text);
+int	exit_err(t_rules *rules, char *msg);
+int	exit_clr(t_rules *rules, char *msg);
 
 /**
  * Displays an error message to standard error output

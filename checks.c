@@ -6,11 +6,18 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 14:04:12 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:52:36 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Function declaration
+*/
+int		get_stop(t_rules *rules);
+void	set_stop(t_rules *rules);
+void	*life(void *arg);
 
 int	get_stop(t_rules *rules)
 {
@@ -27,15 +34,6 @@ void	set_stop(t_rules *rules)
 	pthread_mutex_lock(&rules->stop_lock);
 	rules->stop = 1;
 	pthread_mutex_unlock(&rules->stop_lock);
-}
-
-void	increment_done(t_rules *rules)
-{
-	pthread_mutex_lock(&rules->done_lock);
-	rules->done_count++;
-	if (rules->done_count == rules->nb_philo)
-		set_stop(rules);
-	pthread_mutex_unlock(&rules->done_lock);
 }
 
 void	*life(void *arg)

@@ -6,11 +6,20 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:48:46 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:58:58 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Function declaration
+*/
+int			init_rules(t_rules *rules, int argc, char **argv);
+static int	init_rules_lock(t_rules *rules);
+static int	init_meal_locks(t_philo *philos, int *index);
+t_mutex		*ft_set_froks(int size);
+t_philo		*ft_set_philos(t_rules *rules, int size);
 
 static int	init_rules_lock(t_rules *rules)
 {
