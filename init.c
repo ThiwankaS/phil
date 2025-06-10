@@ -6,11 +6,29 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:13:10 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 10:48:46 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+static int	init_rules_lock(t_rules *rules)
+{
+	if (pthread_mutex_init(&rules->print_lock, NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&rules->stop_lock, NULL) != 0)
+	{
+		pthread_mutex_destroy(&rules->print_lock);
+		return (1);
+	}
+	if (pthread_mutex_init(&rules->done_lock, NULL) != 0)
+	{
+		pthread_mutex_destroy(&rules->print_lock);
+		pthread_mutex_destroy(&rules->stop_lock);
+		return (1);
+	}
+	return (0);
+}
 
 static int	init_meal_locks(t_philo *philos, int *index)
 {
@@ -104,8 +122,7 @@ int	init_rules(t_rules *rules, int argc, char **argv)
 	rules->philos = ft_set_philos(rules, rules->nb_philo);
 	if (!rules->forks || !rules->philos)
 		return (1);
-	pthread_mutex_init(&rules->print_lock, NULL);
-	pthread_mutex_init(&rules->stop_lock, NULL);
-	pthread_mutex_init(&rules->done_lock, NULL);
+	if (init_rules_lock(rules))
+		return (1);
 	return (0);
 }

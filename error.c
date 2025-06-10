@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 01:13:53 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 09:44:37 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 10:35:06 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,11 @@ int	exit_err(t_rules *rules, char *msg)
 		clean_forks(rules);
 	if (rules->philos)
 		clean_philos(rules);
+	return (ft_error(msg));
+}
+
+int	exit_clr(t_rules *rules, char *msg)
+{
+	ft_cleanup(rules);
 	return (ft_error(msg));
 }
