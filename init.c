@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 08:21:32 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 09:47:26 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ int init_rules(t_rules *rules, int argc, char **argv)
 	rules->time_die = ft_atol(argv[2]);
 	rules->time_eat = ft_atol(argv[3]);
 	rules->time_sleep = ft_atol(argv[4]);
-	rules->must_eat = argc == 6 ? ft_atol(argv[5]) : -1;
+	if (argc == 6)
+		rules->must_eat = ft_atol(argv[5]);
+	else
+		rules->must_eat = -1;
 	rules->stop = 0;
 	rules->full = 0;
 	rules->done_count = 0;
@@ -92,5 +95,5 @@ int init_rules(t_rules *rules, int argc, char **argv)
 	pthread_mutex_init(&rules->print_lock, NULL);
 	pthread_mutex_init(&rules->stop_lock, NULL);
 	pthread_mutex_init(&rules->done_lock, NULL);
-	return 0;
+	return (0);
 }
