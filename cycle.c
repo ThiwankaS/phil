@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 11:07:16 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:01:13 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_eat(t_philo *philo)
 	int		first;
 	int		second;
 	t_rules	*rules;
+	size_t	time;
 
 	rules = philo->rules;
 	pick_forks(philo, &first, &second);
@@ -73,8 +74,9 @@ void	ft_eat(t_philo *philo)
 	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&rules->forks[second]);
 	print_status(philo, "has taken a fork");
+	time = getcurrenttime();
 	pthread_mutex_lock(&philo->meal_lock);
-	philo->last_meal = getcurrenttime();
+	philo->last_meal = time;
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->meal_lock);
 	print_status(philo, "is eating");
