@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 07:23:16 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/11 05:44:53 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:44:01 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,6 @@ void	join_all(t_rules *rules, t_thread *meal, t_thread *monitor)
 		pthread_join(ph[i].thread, NULL);
 		i++;
 	}
-	pthread_join(*monitor, NULL);
 	pthread_join(*meal, NULL);
+	pthread_join(*monitor, NULL);
 }
