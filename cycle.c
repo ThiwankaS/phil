@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/11 06:12:10 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:55:01 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*mono_philo(t_philo *ph)
 */
 void	ft_think(t_philo *philo)
 {
-	size_t	time;
+	int		time;
 	size_t	die;
 	size_t	sleep;
 	size_t	eat;
@@ -59,7 +59,7 @@ void	ft_think(t_philo *philo)
 	die = rules->time_die;
 	eat = rules->time_eat;
 	sleep = rules->time_sleep;
-	time = die - sleep - eat;
+	time = (int)(die - sleep - eat);
 	if (get_stop(rules))
 		return ;
 	if (get_full(rules))
