@@ -6,11 +6,20 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 07:23:16 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:22:42 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:57:13 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Function declaration
+*/
+int		pick_forks(t_philo *philo, int *first, int *second);
+int		init_life(t_rules *rules, t_thread *monitor);
+int		init_dinning(t_rules *rules, t_thread *meal, t_thread *monitor);
+int		init_phio_routines(t_rules *rules, t_thread *monitor);
+void	join_all(t_rules *rules, t_thread *meal, t_thread *monitor);
 
 int	pick_forks(t_philo *philo, int *first, int *second)
 {

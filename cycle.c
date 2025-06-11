@@ -6,11 +6,20 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 14:16:02 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:54:18 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Function declaration
+*/
+void	*mono_philo(t_philo *ph);
+void	ft_think(t_philo *philo);
+void	ft_sleep(t_philo *philo);
+void	ft_eat(t_philo *philo);
+void	*routine(void *arg);
 
 void	*mono_philo(t_philo *ph)
 {

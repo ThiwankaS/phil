@@ -59,3 +59,36 @@
  61 2 is sleeping
 121 2 died
 
+./philo 3 310 100 100 2
+
+  0 1 is thinking
+100 1 has taken a fork
+100 1 has taken a fork
+100 1 is eating
+200 1 is sleeping
+300 1 is thinking
+410 1 has taken a fork
+410 1 has taken a fork
+410 1 is eating
+510 1 is sleeping
+
+  0 2 has taken a fork
+  0 2 has taken a fork
+  0 2 is eating
+100 2 is sleeping
+200 2 is thinking
+310 2 has taken a fork
+310 2 has taken a fork
+310 2 is eating
+410 2 is sleeping
+
+  0 3 is thinking
+200 3 has taken a fork
+200 3 has taken a fork
+200 3 is eating
+300 3 is sleeping
+400 3 is thinking
+510 3 has taken a fork
+510 3 has taken a fork
+510 3 is eating
+610 3 is sleeping

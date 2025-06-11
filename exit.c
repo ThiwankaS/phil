@@ -6,11 +6,18 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:13 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 09:28:39 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:55:45 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Function declaration
+*/
+void	clean_forks(t_rules *rules);
+void	clean_philos(t_rules *rules);
+void	ft_cleanup(t_rules *rules);
 
 void	clean_forks(t_rules *rules)
 {

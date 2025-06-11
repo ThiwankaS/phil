@@ -6,11 +6,18 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:09:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:12:00 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:59:52 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+/**
+ * Function declaration
+*/
+int		get_full(t_rules *rules);
+void	set_full(t_rules *rules);
+void	*dinning(void *arg);
 
 int	get_full(t_rules *rules)
 {
