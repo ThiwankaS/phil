@@ -6,19 +6,23 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:09:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 15:59:52 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 05:55:28 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
 /**
- * Function declaration
+* Function declaration
 */
 int		get_full(t_rules *rules);
 void	set_full(t_rules *rules);
 void	*dinning(void *arg);
 
+/**
+* Returns the value of the 'full' flag in a thread-safe way.
+* Indicates whether all philosophers have eaten the required number of times.
+*/
 int	get_full(t_rules *rules)
 {
 	int	full;
@@ -29,6 +33,10 @@ int	get_full(t_rules *rules)
 	return (full);
 }
 
+/**
+* Sets the 'full' flag to 1 in a thread-safe way.
+* Marks that all philosophers have completed their required meals.
+*/
 void	set_full(t_rules *rules)
 {
 	pthread_mutex_lock(&rules->done_lock);
@@ -36,6 +44,11 @@ void	set_full(t_rules *rules)
 	pthread_mutex_unlock(&rules->done_lock);
 }
 
+/**
+* Thread function that monitors philosophers' meal counts.
+* If all philosophers have eaten the required number of times,
+* it sets the 'full' flag to signal completion.
+*/
 void	*dinning(void *arg)
 {
 	t_rules	*rules;

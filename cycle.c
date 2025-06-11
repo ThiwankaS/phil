@@ -6,14 +6,14 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 15:54:18 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 06:12:10 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
 /**
- * Function declaration
+* Function declaration
 */
 void	*mono_philo(t_philo *ph);
 void	ft_think(t_philo *philo);
@@ -21,6 +21,11 @@ void	ft_sleep(t_philo *philo);
 void	ft_eat(t_philo *philo);
 void	*routine(void *arg);
 
+/**
+* Handles the case when there is only one philosopher.
+* Takes one fork, waits until the philosopher dies, then prints death
+* and sets stop flag.
+*/
 void	*mono_philo(t_philo *ph)
 {
 	int		first;
@@ -37,6 +42,11 @@ void	*mono_philo(t_philo *ph)
 	return (NULL);
 }
 
+/**
+* Prints that the philosopher is thinking and optionally waits for
+* a calculated amount of time.
+* The wait helps avoid early starvation based on the time to eat and sleep.
+*/
 void	ft_think(t_philo *philo)
 {
 	size_t	time;
@@ -59,6 +69,10 @@ void	ft_think(t_philo *philo)
 		ft_usleep(time);
 }
 
+/**
+* Prints that the philosopher is sleeping and then sleeps
+* for the defined time.
+*/
 void	ft_sleep(t_philo *philo)
 {
 	t_rules	*rules;
@@ -70,6 +84,11 @@ void	ft_sleep(t_philo *philo)
 	ft_usleep(philo->rules->time_sleep);
 }
 
+/**
+* Handles the eating cycle for a philosopher.
+* Locks both forks, updates meal data, simulates eating,
+* then unlocks the forks.
+*/
 void	ft_eat(t_philo *philo)
 {
 	int		first;
@@ -94,6 +113,12 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_unlock(&rules->forks[first]);
 }
 
+/**
+* Main routine function executed by each philosopher thread.
+* If only one philosopher exists, runs the mono_philo function.
+* Otherwise, cycles through eating, sleeping, and thinking while
+* the simulation runs.
+*/
 void	*routine(void *arg)
 {
 	t_philo	*philo;
