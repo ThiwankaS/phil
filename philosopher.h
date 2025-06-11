@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:55:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 10:35:50 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 06:19:44 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ struct s_rules
 	int		must_eat;
 	int		stop;
 	int		full;
-	int		done_count;
 	t_mutex	*forks;
 	t_mutex	print_lock;
 	t_mutex	stop_lock;
@@ -58,41 +57,69 @@ struct s_rules
 	t_philo	*philos;
 };
 
+/**
+ * Function implmentaion in atol.c file
+*/
+long	ft_atol(const char *nptr);
+
+/**
+ * Function implmentaion in checks.c file
+*/
+int		get_stop(t_rules *rules);
+void	set_stop(t_rules *rules);
+void	*life(void *arg);
+
+/**
+ * Function implmentaion in cycle.c file
+*/
+void	*routine(void *arg);
+
+/**
+ * Function implmentaion in error.c file
+*/
+int		ft_error(char *text);
+int		exit_err(t_rules *rules, char *msg);
+int		exit_clr(t_rules *rules, char *msg);
+
+/**
+ * Function implmentaion in exit.c file
+*/
+void	ft_cleanup(t_rules *rules);
+void	clean_forks(t_rules *rules);
+void	clean_philos(t_rules *rules);
+
+/**
+ * Function implmentaion in helper.c file
+*/
+int		pick_forks(t_philo *philo, int *first, int *second);
+int		init_life(t_rules *rules, t_thread *monitor);
+int		init_dinning(t_rules *rules, t_thread *meal, t_thread *monitor);
+int		init_phio_routines(t_rules *rls, t_thread *monitor);
+void	join_all(t_rules *rules, t_thread *meal, t_thread *monitor);
+
+/**
+ * Function implmentaion in init.c file
+*/
+int		init_rules(t_rules *rules, int argc, char **argv);
+
+/**
+ * Function implmentaion in meals.c file
+*/
+int		get_full(t_rules *rules);
+void	set_full(t_rules *rules);
+void	*dinning(void *arg);
+
+/**
+ * Function implmentaion in utils.c file
+*/
 size_t	getcurrenttime(void);
 size_t	ft_strlen(char *str);
 int		ft_usleep(size_t m_sec);
 void	ft_print(t_philo *philo, const char *msg);
 void	print_status(t_philo *philo, const char *msg);
 
-int		init_rules(t_rules *rules, int argc, char **argv);
-
-long	ft_atol(const char *nptr);
-
-int		get_stop(t_rules *rules);
-void	set_stop(t_rules *rules);
-void	increment_done(t_rules *rules);
-void	*life(void *arg);
-
-void	*routine(void *arg);
-
+/**
+ * Function implmentaion in validate.c file
+*/
 int		ft_is_valid(char **argv, int argc);
-
-int		ft_error(char *text);
-
-int		get_full(t_rules *rules);
-void	set_full(t_rules *rules);
-void	*dinning(void *arg);
-
-int		init_life(t_rules *rules, t_thread *monitor);
-int		init_dinning(t_rules *rules, t_thread *meal, t_thread *monitor);
-int		init_phio_routines(t_rules *rls, t_thread *monitor);
-void	join_all(t_rules *rules, t_thread *meal, t_thread *monitor);
-
-void	ft_cleanup(t_rules *rules);
-void	clean_forks(t_rules *rules);
-void	clean_philos(t_rules *rules);
-
-int		exit_err(t_rules *rules, char *msg);
-int		exit_clr(t_rules *rules, char *msg);
-int		pick_forks(t_philo *philo, int *first, int *second);
 #endif

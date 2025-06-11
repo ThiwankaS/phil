@@ -6,19 +6,22 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:13 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 15:55:45 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 05:37:30 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
 /**
- * Function declaration
+* Function declaration
 */
 void	clean_forks(t_rules *rules);
 void	clean_philos(t_rules *rules);
 void	ft_cleanup(t_rules *rules);
 
+/**
+* Destroys all fork mutexes and frees the memory allocated for forks.
+*/
 void	clean_forks(t_rules *rules)
 {
 	int		i;
@@ -34,6 +37,10 @@ void	clean_forks(t_rules *rules)
 	free(rules->forks);
 }
 
+/**
+* Destroys all philosopher meal mutexes and frees the memory
+* allocated for philosophers.
+*/
 void	clean_philos(t_rules *rules)
 {
 	int		i;
@@ -49,6 +56,10 @@ void	clean_philos(t_rules *rules)
 	free(rules->philos);
 }
 
+/**
+* Performs complete cleanup by freeing forks and philosophers if they exist,
+* and destroys all other mutexes used in the simulation.
+*/
 void	ft_cleanup(t_rules *rules)
 {
 	if (rules->forks)

@@ -6,14 +6,14 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:18 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 15:58:58 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 06:20:38 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
 /**
- * Function declaration
+* Function declaration
 */
 int			init_rules(t_rules *rules, int argc, char **argv);
 static int	init_rules_lock(t_rules *rules);
@@ -21,6 +21,13 @@ static int	init_meal_locks(t_philo *philos, int *index);
 t_mutex		*ft_set_froks(int size);
 t_philo		*ft_set_philos(t_rules *rules, int size);
 
+/**
+* Initializes the mutex locks in the rules struct: print_lock, stop_lock,
+* and done_lock.
+* If any mutex initialization fails, already-initialized mutexes
+* are destroyed.
+* Returns 0 on success, or 1 on failure.
+*/
 static int	init_rules_lock(t_rules *rules)
 {
 	if (pthread_mutex_init(&rules->print_lock, NULL) != 0)
@@ -39,6 +46,11 @@ static int	init_rules_lock(t_rules *rules)
 	return (0);
 }
 
+/**
+* Initializes the meal mutex for a philosopher at the given index.
+* If initialization fails, destroys all previously initialized meal mutexes.
+* Returns 0 on success, or 1 on failure.
+*/
 static int	init_meal_locks(t_philo *philos, int *index)
 {
 	int	i;
@@ -58,6 +70,13 @@ static int	init_meal_locks(t_philo *philos, int *index)
 	return (0);
 }
 
+/**
+* Allocates and initializes an array of fork mutexes.
+* If any mutex initialization fails, previously initialized ones
+* are destroyed
+* and memory is freed.
+* Returns a pointer to the mutex array on success, or NULL on failure.
+*/
 t_mutex	*ft_set_froks(int size)
 {
 	int		i;
@@ -86,6 +105,13 @@ t_mutex	*ft_set_froks(int size)
 	return (forks);
 }
 
+/**
+* Allocates and initializes an array of philosopher structs.
+* Sets fork indices, meal data, and mutexes. On failure,
+* frees allocated memory.
+* Returns a pointer to the philosopher array on success,
+* or NULL on failure.
+*/
 t_philo	*ft_set_philos(t_rules *rules, int size)
 {
 	int		i;
@@ -113,6 +139,12 @@ t_philo	*ft_set_philos(t_rules *rules, int size)
 	return (philos);
 }
 
+/**
+* Initializes the simulation rules using the given arguments.
+* Allocates and sets up forks and philosophers, initializes other locks,
+* and sets default values for counters and time.
+* Returns 0 on success, or 1 on failure.
+*/
 int	init_rules(t_rules *rules, int argc, char **argv)
 {
 	rules->nb_philo = ft_atol(argv[1]);
@@ -125,7 +157,6 @@ int	init_rules(t_rules *rules, int argc, char **argv)
 		rules->must_eat = -1;
 	rules->stop = 0;
 	rules->full = 0;
-	rules->done_count = 0;
 	rules->start_time = getcurrenttime();
 	rules->forks = ft_set_froks(rules->nb_philo);
 	rules->philos = ft_set_philos(rules, rules->nb_philo);

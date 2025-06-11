@@ -6,12 +6,19 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:32 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 14:44:51 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 05:52:58 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
+/**
+* Entry point of the program.
+* Validates input arguments and initializes simulation rules.
+* Starts monitor, philosopher, and dining threads in order.
+* On failure at any step, performs cleanup and returns with an error.
+* Waits for all threads to finish before performing final cleanup.
+*/
 int	main(int argc, char **argv)
 {
 	t_thread	monitor;

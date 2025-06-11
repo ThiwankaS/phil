@@ -6,14 +6,14 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:08:52 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/10 16:01:43 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 06:00:50 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
 /**
- * Function declaration
+* Function declaration
 */
 size_t	ft_strlen(char *str);
 size_t	getcurrenttime(void);
@@ -21,11 +21,10 @@ int		ft_usleep(size_t m_sec);
 void	ft_print(t_philo *philo, const char *msg);
 void	print_status(t_philo *philo, const char *msg);
 
-
 /**
- * Calculates the length of a null-terminated string
- * Returns the number of characters before the null terminator
- * Safely handles a NULL pointer by returning 0
+* Calculates the length of a null-terminated string
+* Returns the number of characters before the null terminator
+* Safely handles a NULL pointer by returning 0
 */
 size_t	ft_strlen(char *str)
 {
@@ -37,6 +36,11 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
+/**
+* Returns the current system time in milliseconds.
+* Uses gettimeofday to calculate time in ms since the epoch.
+* Returns 0 if gettimeofday fails.
+*/
 size_t	getcurrenttime(void)
 {
 	t_timeval	time;
@@ -48,6 +52,13 @@ size_t	getcurrenttime(void)
 	return (m_sec);
 }
 
+/**
+* Custom sleep function that pauses execution for the specified
+* number of milliseconds.
+* Uses getcurrenttime to loop-check the elapsed time and calls usleep
+* in small intervals.
+* Returns 1 when the delay has completed.
+*/
 int	ft_usleep(size_t m_sec)
 {
 	size_t	time;
@@ -58,6 +69,10 @@ int	ft_usleep(size_t m_sec)
 	return (1);
 }
 
+/**
+* Prints the current timestamp, philosopher ID, and a message to stdout.
+* The timestamp is relative to the simulation start time.
+*/
 void	ft_print(t_philo *philo, const char *msg)
 {
 	size_t	time;
@@ -68,6 +83,11 @@ void	ft_print(t_philo *philo, const char *msg)
 	printf("%ld %d %s\n", time, id, msg);
 }
 
+/**
+* Prints a status message in a thread-safe way.
+* Locks the print mutex, checks if the simulation has not stopped,
+* and then calls ft_print.
+*/
 void	print_status(t_philo *philo, const char *msg)
 {
 	pthread_mutex_lock(&philo->rules->print_lock);

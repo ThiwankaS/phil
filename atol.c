@@ -6,24 +6,24 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:57:56 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/08 15:56:22 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/11 05:19:03 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
 /**
- * Function declaration
+* Function declaration
 */
 long	ft_atol(const char *nptr);
 
 /**
- * Converts a string to a long integer (similar to atoi but returns long)
- * Skips leading whitespace characters
- * Handles optional '+' or '-' sign to determine the number's sign
- * Parses digits and builds the numeric result
- * Returns the signed result if the string ends properly
- * Returns an invalid value (greater than INT_MAX) if non-digit characters remain
+* Converts a string to a long integer (similar to atoi but returns long)
+* Skips leading whitespace characters
+* Handles optional '+' or '-' sign to determine the number's sign
+* Parses digits and builds the numeric result
+* Returns the signed result if the string ends properly
+* Returns an invalid value (greater than INT_MAX) if non-digit characters remain
 */
 long	ft_atol(const char *nptr)
 {

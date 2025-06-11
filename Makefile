@@ -2,7 +2,7 @@ NAME = philo
 
 CMD = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS   = -Wall -Wextra -Werror
 
 CFLAGS_D = -Wall -Wextra -Werror -g -fsanitize=thread -pthread -lpthread
 
@@ -18,9 +18,9 @@ SRCS = \
 	exit.c\
 	helper.c\
 	init.c\
+	meals.c\
 	utils.c\
 	validate.c\
-	meals.c\
 	main.c\
 
 OBJS = $(SRCS:.c=.o)
