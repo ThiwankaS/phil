@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:07 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/12 06:48:28 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/13 01:18:07 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,11 @@ void	ft_eat(t_philo *philo)
 
 	rules = philo->rules;
 	pick_forks(philo, &first, &second);
-	pthread_mutex_lock(&rules->forks[first]);
+	if (pick_first_fork(rules, first))
+		return ;
 	print_status(philo, "has taken a fork");
-	pthread_mutex_lock(&rules->forks[second]);
+	if (pick_second_fork(rules, first, second))
+		return ;
 	print_status(philo, "has taken a fork");
 	time = getcurrenttime();
 	pthread_mutex_lock(&philo->meal_lock);

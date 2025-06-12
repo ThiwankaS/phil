@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:09:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/12 06:49:18 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/13 02:02:24 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 * Function declaration
 */
 int		get_full(t_rules *rules);
+int		pick_first_fork(t_rules *rules, int first);
+int		pick_second_fork(t_rules *rules, int first, int second);
 void	set_full(t_rules *rules);
 void	*dinning(void *arg);
 
@@ -72,4 +74,41 @@ void	*dinning(void *arg)
 			set_full(rules);
 	}
 	return (NULL);
+}
+
+/**
+* Attempts to pick up the first fork if the simulation has not stopped
+* or completed.
+* Locks the corresponding fork mutex and returns 0 on success, 1 otherwise.
+*/
+int	pick_first_fork(t_rules *rules, int first)
+{
+	if (get_stop(rules))
+		return (1);
+	if (get_full(rules))
+		return (1);
+	pthread_mutex_lock(&rules->forks[first]);
+	return (0);
+}
+
+/**
+* Attempts to pick up the second fork if the simulation has not stopped
+* or completed.
+* If the attempt fails, the first fork is unlocked to avoid deadlocks.
+* Returns 0 on success, 1 otherwise.
+*/
+int	pick_second_fork(t_rules *rules, int first, int second)
+{
+	if (get_stop(rules))
+	{
+		pthread_mutex_unlock(&rules->forks[first]);
+		return (1);
+	}
+	if (get_full(rules))
+	{
+		pthread_mutex_unlock(&rules->forks[first]);
+		return (1);
+	}
+	pthread_mutex_lock(&rules->forks[second]);
+	return (0);
 }
