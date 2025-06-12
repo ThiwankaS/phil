@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:55:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/11 06:19:44 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/13 01:15:15 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int		init_rules(t_rules *rules, int argc, char **argv);
  * Function implmentaion in meals.c file
 */
 int		get_full(t_rules *rules);
+int		pick_first_fork(t_rules *rules, int first);
+int		pick_second_fork(t_rules *rules, int first, int second);
 void	set_full(t_rules *rules);
 void	*dinning(void *arg);
 
