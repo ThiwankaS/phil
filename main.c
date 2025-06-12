@@ -6,11 +6,11 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:58:32 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/11 05:52:58 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/12 06:49:08 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "./includes/philosopher.h"
 
 /**
 * Entry point of the program.

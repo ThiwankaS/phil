@@ -6,11 +6,11 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 01:08:06 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/11 06:02:47 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/12 06:49:40 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "./includes/philosopher.h"
 
 /**
 * Function declaration
