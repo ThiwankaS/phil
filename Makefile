@@ -2,13 +2,13 @@ NAME = philo
 
 CMD = cc
 
-CFLAGS   = -Wall -Wextra -Werror
+CFLAGS   = -Wall -Wextra -Werror -Iincludes
 
-CFLAGS_D = -Wall -Wextra -Werror -g -fsanitize=thread -pthread -lpthread
+CFLAGS_D = -Wall -Wextra -Werror -g -fsanitize=thread -pthread -lpthread -Iincludes
 
-CFLAGS_L = -Wall -Wextra -Werror -g -fsanitize=address -pthread -lpthread
+CFLAGS_L = -Wall -Wextra -Werror -g -fsanitize=address -pthread -lpthread -Iincludes
 
-CFLAGS_V = -Wall -Wextra -Werror -g -pthread -lpthread
+CFLAGS_V = -Wall -Wextra -Werror -g -pthread -lpthread -Iincludes
 
 SRCS = \
 	atol.c\
