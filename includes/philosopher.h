@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:55:36 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/13 01:15:15 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/17 05:31:39 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	*dinning(void *arg);
 */
 size_t	getcurrenttime(void);
 size_t	ft_strlen(char *str);
-int		ft_usleep(size_t m_sec);
+int		ft_usleep(size_t m_sec, t_rules *rules);
 void	ft_print(t_philo *philo, const char *msg);
 void	print_status(t_philo *philo, const char *msg);
 

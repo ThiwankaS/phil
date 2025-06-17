@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:08:52 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/06/12 06:49:31 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/06/17 05:31:02 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 size_t	ft_strlen(char *str);
 size_t	getcurrenttime(void);
-int		ft_usleep(size_t m_sec);
+int		ft_usleep(size_t m_sec, t_rules *rules);
 void	ft_print(t_philo *philo, const char *msg);
 void	print_status(t_philo *philo, const char *msg);
 
@@ -59,12 +59,12 @@ size_t	getcurrenttime(void)
 * in small intervals.
 * Returns 1 when the delay has completed.
 */
-int	ft_usleep(size_t m_sec)
+int	ft_usleep(size_t m_sec, t_rules *rules)
 {
 	size_t	time;
 
 	time = getcurrenttime();
-	while (getcurrenttime() - time < m_sec)
+	while (getcurrenttime() - time < m_sec && !get_stop(rules))
 		usleep(500);
 	return (1);
 }

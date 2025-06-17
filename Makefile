@@ -2,13 +2,15 @@ NAME = philo
 
 CMD = cc
 
+CMD_D = gcc
+
 CFLAGS   = -Wall -Wextra -Werror -Iincludes
 
-CFLAGS_D = -Wall -Wextra -Werror -g -fsanitize=thread -pthread -lpthread -Iincludes
+CFLAGS_D = -Wall -Wextra -Werror -g -fsanitize=thread -pthread -Iincludes
 
-CFLAGS_L = -Wall -Wextra -Werror -g -fsanitize=address -pthread -lpthread -Iincludes
+CFLAGS_L = -Wall -Wextra -Werror -g -fsanitize=address -pthread -Iincludes
 
-CFLAGS_V = -Wall -Wextra -Werror -g -pthread -lpthread -Iincludes
+CFLAGS_V = -Wall -Wextra -Werror -g  -O1 -pthread -Iincludes
 
 SRCS = \
 	atol.c\
@@ -34,10 +36,10 @@ debug_leaks : $(OBJS)
 	$(CMD) $(CFLAGS_L) $(OBJS) -o $(NAME)
 
 debug_drc : $(OBJS)
-	$(CMD) $(CFLAGS_D) $(OBJS) -o $(NAME)
+	$(CMD_D) $(CFLAGS_D) $(OBJS) -o $(NAME)
 
 debug_valgrind : $(OBJS)
-	$(CMD) $(CFLAGS_V) $(OBJS) -o $(NAME)
+	$(CMD_D) $(CFLAGS_V) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
